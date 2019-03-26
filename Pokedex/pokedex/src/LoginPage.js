@@ -9,6 +9,7 @@ class LoginPage extends Component {
         this.state = {
             username: "",
             password: "",
+            redirect: false,
         };
 
         this.handleChange = this.handleChange.bind(this);
@@ -32,13 +33,19 @@ class LoginPage extends Component {
         // hardcoding login for now, can add real login later
         // https://serverless-stack.com/chapters/login-with-aws-cognito.html
         if (this.state.username === "trainer" && this.state.password === "1234") {
-            return this._renderHomePage();
+            this.setState({
+                redirect: true,
+            });
         } else {
             alert("Invalid login")
         }
     }
 
     render() {
+        if (this.state.redirect) {
+            return <HomePage />
+        }
+
         return (
             <div>
                 <form onSubmit={this.handleSubmit}>
@@ -57,15 +64,13 @@ class LoginPage extends Component {
                                    onChange={this.handleChange}
                             />
                         </label>
+
                         <input type="submit" value="Submit"/>
                     </div>
                 </form>
+
             </div>
         )
-    }
-
-    _renderHomePage() {
-        // TODO route to home page
     }
 }
 
