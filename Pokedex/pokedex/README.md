@@ -2,8 +2,11 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 
 ## Steps
 
-1. First run `npm start` to start the server
-2. In a separate terminal tab run `npm run dev` to start the client side.
+1. Fill in password in `server.js` file
+2. Run `npm install` to install relevant `node_modules`
+3. Run `npm start` to start the server
+4. In a separate terminal tab run `npm run dev` to start the client side.
+5. If you encounter an authentication issue, in mysql workbench, run `alter user 'root'@'localhost' identified with mysql_native_password by 'password'` but replace 'password' with your own.
 
 ## Available Scripts
 

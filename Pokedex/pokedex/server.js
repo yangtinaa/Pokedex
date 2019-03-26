@@ -3,12 +3,14 @@ const mysql = require('mysql')
 const path = require("path");
 
 const PORT = process.env.PORT || 8080;
+const PASSWORD = ''; // FILL IN OWN PASSWORD
+
 const app = express();
 
 const connection = mysql.createConnection({
   host: 'localhost',
   user: 'root',
-  password: 'Evangeline129/',
+  password: PASSWORD,
   database: 'Pokedex',
 })
 
