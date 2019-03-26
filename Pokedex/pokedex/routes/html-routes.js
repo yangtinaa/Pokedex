@@ -9,4 +9,13 @@ module.exports = function(app, connection) {
       err ? res.send(err) : res.send(data);
     });
   });
+
+  app.get('/pokemon/:userId', function(req, res) {
+    const userId = req.params.userId;
+    const query = 'SELECT p.id, p.name, p.type, p.image FROM pokemon p, pokemon_CapturedBy pcb WHERE pcb.capturedBy = ' + userId;
+
+    connection.query(query, function(err, data) {
+      err ? res.send(err) : res.send(data);
+    });
+  });
 };

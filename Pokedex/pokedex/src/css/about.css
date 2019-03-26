@@ -1,0 +1,13 @@
+.about {
+  display: flex;
+  flex-direction: row;
+}
+
+.about-img {
+  margin-right: 20px;
+}
+
+.about-info {
+  display: flex;
+  flex-direction: column;
+}
