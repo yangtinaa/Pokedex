@@ -1,4 +1,5 @@
 import React, {Component} from "react";
+import InfoCard from './InfoCard'
 import './css/about.css'
 
 class About extends Component {
@@ -48,24 +49,9 @@ class About extends Component {
     }
 
     _renderInfoCard() {
-      const {info} = this.state;
       return (
         <div className="about-container">
-          <div className="about">
-            {
-              info.image ?
-                <img
-                  className="about-img"
-                  src={info.image}
-                  alt={info.name || "user image"} /> : null
-            }
-            <div className="about-info">
-              <div>Name: {info.name}</div>
-              <div>Age: {info.age || "Unknown"}</div>
-              <div>Gender: {info.gender || "Unknown"}</div>
-              <div>Hometown: {info.hometown || "Unknown"}</div>
-            </div>
-          </div>
+          <InfoCard {...this.state.info} />
           <button onClick={() => this.setState({editing: true})}>Edit</button>
         </div>
       );

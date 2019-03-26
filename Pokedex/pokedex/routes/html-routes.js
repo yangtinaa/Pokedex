@@ -31,4 +31,12 @@ module.exports = function(app, connection) {
       err ? res.send(err) : res.send(data);
     });
   });
+
+  app.get('/trainers', function(req, res) {
+    const query = 'SELECT * FROM trainer;';
+
+    connection.query(query, function(err, data) {
+      err ? res.send(err) : res.send(data);
+    });
+  });
 };
