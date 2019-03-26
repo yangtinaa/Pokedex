@@ -109,13 +109,13 @@ VALUES
 INSERT INTO  Gym_LocatedIn_Town(gymName, badgeName, townName, badgeImage)
 VALUES
        ('Pewter Gym', 'Boulder Badge', 'Pewter City', 'https://cdn.bulbagarden.net/upload/thumb/d/dd/Boulder_Badge.png/1200px-Boulder_Badge.png'),
-       ('Cerulean Gym', 'Cascade Badge', 'Cerulean City', '' ),
-       ('Vermilion Gym', 'Thunder Badge', 'Vermilion City', ''),
-       ('Celadon Gym', 'Rainbow Badge', 'Celadon City', ''),
-       ('Fuchsia Gym', 'Soul Badge', 'Fuchsia City', ''),
-       ('Saffron Gym', 'Marsh Badge', 'Saffron City', ''),
-       ('Cinnabar Gym', 'Volcano Badge', 'Cinnabar Island', ''),
-       ('Viridian Gym', 'Earth Badge', 'Viridian City', '');
+       ('Cerulean Gym', 'Cascade Badge', 'Cerulean City', 'https://cdn.bulbagarden.net/upload/9/9c/Cascade_Badge.png'),
+       ('Vermilion Gym', 'Thunder Badge', 'Vermilion City', 'https://cdn.bulbagarden.net/upload/a/a6/Thunder_Badge.png'),
+       ('Celadon Gym', 'Rainbow Badge', 'Celadon City', 'https://cdn.bulbagarden.net/upload/b/b5/Rainbow_Badge.png'),
+       ('Fuchsia Gym', 'Soul Badge', 'Fuchsia City', 'https://cdn.bulbagarden.net/upload/7/7d/Soul_Badge.png'),
+       ('Saffron Gym', 'Marsh Badge', 'Saffron City', 'https://cdn.bulbagarden.net/upload/6/6b/Marsh_Badge.png'),
+       ('Cinnabar Gym', 'Volcano Badge', 'Cinnabar Island', 'https://cdn.bulbagarden.net/upload/1/12/Volcano_Badge.png'),
+       ('Viridian Gym', 'Earth Badge', 'Viridian City', 'https://cdn.bulbagarden.net/upload/7/78/Earth_Badge.png');
 
 INSERT into GymLeader_Of_Gym(trainerID, gymName)
 values
@@ -174,18 +174,18 @@ where name = 'Psychic';
 
 INSERT INTO Pokemon(name, type, image)
 VALUES
-      ('Charmander', 'Fire', null),
-       ('Squirtle', 'Water', null),
-       ('Bulbasaur', 'Grass', null),
-      ('Staryu', 'Water', null),
-      ('Gloom', 'Grass', null),
-      ('Ninetales', 'Fire', null),
-      ('Geodude', 'Rock', null),
-      ('Raichu', 'Electric', null),
-      ('Pikachu', 'Electric', null),
-      ('Venonat', 'Poison', null),
-      ('Onix', 'Ground', null),
-      ('Kadabra', 'Psychic', null);
+      ('Charmander', 'Fire', 'https://cdn.bulbagarden.net/upload/7/73/004Charmander.png'),
+       ('Squirtle', 'Water', 'https://cdn.bulbagarden.net/upload/3/39/007Squirtle.png'),
+       ('Bulbasaur', 'Grass', 'https://cdn.bulbagarden.net/upload/2/21/001Bulbasaur.png'),
+      ('Staryu', 'Water', 'https://cdn.bulbagarden.net/upload/4/4f/120Staryu.png'),
+      ('Gloom', 'Grass', 'https://cdn.bulbagarden.net/upload/2/2a/044Gloom.png'),
+      ('Ninetales', 'Fire', 'https://cdn.bulbagarden.net/upload/0/05/038Ninetales.png'),
+      ('Geodude', 'Rock', 'https://cdn.bulbagarden.net/upload/9/98/074Geodude.png'),
+      ('Raichu', 'Electric', 'https://cdn.bulbagarden.net/upload/8/88/026Raichu.png'),
+      ('Pikachu', 'Electric', 'https://cdn.bulbagarden.net/upload/0/0d/025Pikachu.png'),
+      ('Venonat', 'Poison', 'https://cdn.bulbagarden.net/upload/a/ad/048Venonat.png'),
+      ('Onix', 'Ground', 'https://cdn.bulbagarden.net/upload/9/9a/095Onix.png'),
+      ('Kadabra', 'Psychic', 'https://cdn.bulbagarden.net/upload/9/97/064Kadabra.png');
 
 INSERT INTO Pokemon_CapturedBy(id, name, gender, capturedBy)
 VALUES
