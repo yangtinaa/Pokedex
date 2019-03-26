@@ -1,5 +1,10 @@
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
+## Steps
+
+1. First run `npm start` to start the server
+2. In a separate terminal tab run `npm run dev` to start the client side.
+
 ## Available Scripts
 
 In the project directory, you can run:
