@@ -11,10 +11,6 @@ import About from "./About";
 import Pokemon from "./Pokemon";
 
 class HomePage extends Component {
-    constructor(props) {
-        super(props);
-    }
-
     render() {
         return (
           <HashRouter>
