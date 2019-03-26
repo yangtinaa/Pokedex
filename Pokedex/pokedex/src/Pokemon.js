@@ -17,26 +17,26 @@ class Pokemon extends Component {
     }
 
     render() {
-        return (
-          <div>
-            {this.state.pokemon.map(p => (
-                <div key={p.id} className="pokemon-card">
-                  {
-                    p.image ?
-                      <img
-                        className="pokemon-img"
-                        src={p.image}
-                        alt={p.name || "pokemon image"} /> : null
-                  }
-                  <div className="pokemon-info">
-                    <div>Name: {p.name}</div>
-                    <div>Gender: {p.gender || "Unknown"}</div>
-                    <div>Type: {p.type || "Unknown"}</div>
-                  </div>
+      return (
+        <div>
+          {this.state.pokemon.map(p => (
+              <div key={p.id} className="pokemon-card">
+                {
+                  p.image ?
+                    <img
+                      className="pokemon-img"
+                      src={p.image}
+                      alt={p.name || "pokemon image"} /> : null
+                }
+                <div className="pokemon-info">
+                  <div>Name: {p.name}</div>
+                  <div>Gender: {p.gender || "Unknown"}</div>
+                  <div>Type: {p.type || "Unknown"}</div>
                 </div>
-            ))}
-          </div>
-        );
+              </div>
+          ))}
+        </div>
+      );
     }
 }
 

@@ -1,6 +1,14 @@
 .about {
   display: flex;
   flex-direction: row;
+  align-items: center;
+}
+
+.about-container {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  justify-content: space-between;
 }
 
 .about-img {
@@ -8,6 +16,11 @@
 }
 
 .about-info {
+  display: flex;
+  flex-direction: column;
+}
+
+.edit-buttons {
   display: flex;
   flex-direction: column;
 }

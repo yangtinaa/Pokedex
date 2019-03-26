@@ -1,6 +1,7 @@
 const express = require('express');
 const mysql = require('mysql')
 const path = require("path");
+const bodyParser = require('body-parser');
 
 const PORT = process.env.PORT || 8080;
 const PASSWORD = ''; // FILL IN OWN PASSWORD
@@ -20,6 +21,7 @@ connection.connect(function(err) {
 
 // Serve the static files from the React app
 app.use(express.static(path.join(__dirname, "src")));
+app.use(bodyParser.json());
 
 require('./routes/html-routes.js')(app, connection);
 
