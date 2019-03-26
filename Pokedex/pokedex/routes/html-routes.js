@@ -39,4 +39,14 @@ module.exports = function(app, connection) {
       err ? res.send(err) : res.send(data);
     });
   });
+
+  app.get('/gyms', function(req, res) {
+    const querySel = 'SELECT g.gymName, g.badgeName, g.badgeImage, g.townName, t.name ';
+    const queryFrom = 'FROM Gym_LocatedIn_Town g, GymLeader_of_Gym gl, Trainer t '
+    const queryWhere = 'WHERE g.gymName = gl.gymName AND gl.trainerID = t.id;';
+
+    connection.query(querySel + queryFrom + queryWhere, function(err, data) {
+      err ? res.send(err) : res.send(data);
+    });
+  });
 };

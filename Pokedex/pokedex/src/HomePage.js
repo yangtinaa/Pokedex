@@ -11,6 +11,7 @@ import About from "./About";
 import Pokemon from "./Pokemon";
 import Trainers from "./Trainers";
 import Explore from "./Explore";
+import Gyms from "./Gyms";
 
 class HomePage extends Component {
     render() {
@@ -21,12 +22,14 @@ class HomePage extends Component {
                 <li><NavLink to="/about">Personal Info</NavLink></li>
                 <li><NavLink to="/pokemon">My Pokemon</NavLink></li>
                 <li><NavLink to="/trainers">Trainers</NavLink></li>
+                <li><NavLink to="/gyms">Gyms</NavLink></li>
                 <li><NavLink to="/explore">Explore</NavLink></li>
               </ul>
               <div className="content">
                 <Route exact path="/about" component={About}/>
                 <Route exact path="/pokemon" component={Pokemon}/>
                 <Route exact path="/trainers" component={Trainers}/>
+                <Route exact path="/gyms" component={Gyms}/>
                 <Route exact path="/explore" component={Explore}/>
               </div>
             </div>

@@ -12,7 +12,7 @@ class InfoCard extends Component {
             <img
               className="about-img"
               src={image}
-              alt={name || "user image"} /> : null
+              alt={name || "element image"} /> : null
         }
         <div className="about-info">
           <div>Name: {name}</div>

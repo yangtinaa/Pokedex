@@ -1,6 +1,5 @@
 import React, {Component} from "react";
 import InfoCard from './InfoCard';
-// import './css/trainers.css'
 
 class Trainers extends Component {
   constructor(props) {
