@@ -1,9 +1,20 @@
 const mysql = require('mysql');
 
 module.exports = function(app, connection) {
-  // Example of a mysql query
-  app.get('/towns', function(req, res) {
-    connection.query('SELECT * FROM town', function(err, data) {
+  app.get('/user/:userId', function(req, res) {
+    const userId = req.params.userId;
+    const query = 'SELECT * FROM trainer WHERE id = ' + userId;
+
+    connection.query(query, function(err, data) {
+      err ? res.send(err) : res.send(data);
+    });
+  });
+
+  app.get('/pokemon/:userId', function(req, res) {
+    const userId = req.params.userId;
+    const query = 'SELECT pcb.id, p.name, p.type, p.image FROM pokemon p, pokemon_CapturedBy pcb WHERE pcb.name = p.name AND pcb.capturedBy = ' + userId;
+
+    connection.query(query, function(err, data) {
       err ? res.send(err) : res.send(data);
     });
   });
