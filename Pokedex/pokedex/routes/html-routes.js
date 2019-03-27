@@ -33,7 +33,7 @@ module.exports = function(app, connection) {
     });
   });
 
-  app.get('/pokemon/:type', function(req, res) {
+  app.get('/filteredPokemon/:type', function(req, res) {
     const type = req.params.type;
 
     const query = 'SELECT * FROM Pokemon WHERE type = "' + type + '";';

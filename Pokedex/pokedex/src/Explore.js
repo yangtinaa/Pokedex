@@ -29,7 +29,7 @@ class Explore extends Component {
         const encounteredReq =
           fetch('/encountered/0/' + this.state.filter).then(res => res.json());
         const allPokemonReq =
-          fetch('/pokemon/' + this.state.filter).then(res => res.json());
+          fetch('/filteredPokemon/' + this.state.filter).then(res => res.json());
 
         Promise.all([encounteredReq,allPokemonReq]).then(values =>
           this._updateData(values[0], values[1])
@@ -53,8 +53,6 @@ class Explore extends Component {
       const encounteredData = data.map(d => d.pokemonName);
       const encountered = [];
       const allPokemon = [];
-
-      debugger;
 
       let i;
       for(i = 0; i < totalData.length; i++) {
