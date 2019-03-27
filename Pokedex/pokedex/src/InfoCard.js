@@ -4,7 +4,7 @@ import './css/about.css'
 class InfoCard extends Component {
   render() {
     const {image, name, age, gender, hometown, style} = this.props;
-    debugger;
+
     return (
       <div className="about" style={style}>
         {

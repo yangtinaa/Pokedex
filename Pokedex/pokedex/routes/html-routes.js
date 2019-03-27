@@ -130,4 +130,17 @@ module.exports = function(app, connection) {
       err ? res.send(err) : res.send(data);
     });
   });
+
+  app.post('/removeEncounter/:userId/:pokemonName', function(req, res) {
+    const userId = req.params.userId;
+    const pokemonName = req.params.pokemonName;
+
+    const from = 'DELETE FROM Trainer_Encounters_Pokemon ';
+    const where = 'WHERE pokemonName = "' + pokemonName + '" AND trainerID = ' + userId + ';';
+    const query = from + where;
+
+    connection.query(query, function(err, data) {
+      err ? res.send(err) : res.send(data);
+    });
+  });
 };

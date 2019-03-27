@@ -1,6 +1,8 @@
 import React, {Component} from "react";
 import './css/pokemon.css'
 
+import PokemonCard from './PokemonCard';
+
 class Explore extends Component {
     constructor(props) {
         super(props);
@@ -76,6 +78,16 @@ class Explore extends Component {
       this.setState({encountered, allPokemon: allPokemon.filter(p => p.name !== pokemon.name)});
     }
 
+    _handleRemove(pokemon) {
+      const {encountered, allPokemon} = this.state;
+      fetch('/removeEncounter/' + this.state.userId + '/' + pokemon.name, {
+        method: 'post',
+      }).then(res => console.log(res.json()));
+
+      allPokemon.push(pokemon);
+      this.setState({encountered: encountered.filter(p => p.name !== pokemon.name), allPokemon});
+    }
+
     render() {
       return (
         <div>
@@ -96,17 +108,11 @@ class Explore extends Component {
               <div style={{marginBottom: "10px"}}>Encountered Pokemon:</div>
               {this.state.encountered.map(p => (
                 <div key={p.name} className="pokemon-container">
-                  {
-                    p.image ?
-                      <img
-                        className="pokemon-img"
-                        src={p.image}
-                        alt={p.name || "pokemon image"} /> : null
-                  }
-                  <div className="pokemon-info">
-                    <div>Name: {p.name}</div>
-                    <div>Type: {p.type || "Unknown"}</div>
-                  </div>
+                  <PokemonCard p={p} />
+                  <button className="pokemon-card-button"
+                          onClick={() => this._handleRemove(p)}>
+                    Remove
+                  </button>
                 </div>
               ))}
             </div>
@@ -116,21 +122,9 @@ class Explore extends Component {
               <div style={{marginBottom: "10px", marginTop: "20px"}}>New Pokemon:</div>
               {this.state.allPokemon.map(p => (
                 <div key={p.name} style={{position: "relative"}}>
-                  <div className="pokemon-container pokemon-w-overlay">
-                    <div className="pokemon-card">
-                      {
-                        p.image ?
-                          <img
-                            className="pokemon-img"
-                            src={p.image}
-                            alt={p.name || "pokemon image"} /> : null
-                      }
-                      <div className="pokemon-info">
-                        <div>Name: {p.name}</div>
-                        <div>Type: {p.type || "Unknown"}</div>
-                      </div>
-                    </div>
-                    <button className="pokemon-encounter-button"
+                  <div className="pokemon-container">
+                    <PokemonCard p={p} />
+                    <button className="pokemon-card-button"
                             onClick={() => this._handleEncounter(p)}>
                       Encounter
                     </button>
