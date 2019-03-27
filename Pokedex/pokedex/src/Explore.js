@@ -26,9 +26,11 @@ class Explore extends Component {
     componentDidUpdate(prevProps, prevState) {
       if (prevState.filter !== this.state.filter) {
         // Temporarily hardcoded userId
-        const encounteredReq =
+        const encounteredReq = this.state.filter === 'All' ?
+          fetch('/encountered/0').then(res => res.json()) :
           fetch('/encountered/0/' + this.state.filter).then(res => res.json());
-        const allPokemonReq =
+        const allPokemonReq = this.state.filter === 'All' ?
+          fetch('/pokemon').then(res => res.json()) :
           fetch('/filteredPokemon/' + this.state.filter).then(res => res.json());
 
         Promise.all([encounteredReq,allPokemonReq]).then(values =>
