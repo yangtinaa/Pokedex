@@ -40,10 +40,9 @@ class Gyms extends Component {
   _handleRemove(gym) {
     const {gyms} = this.state;
 
-    // Temp comment out until the backend is fixed
-    // fetch('/removeGym/' + gym.gymName, {
-    //   method: 'post',
-    // }).then(res => console.log(res.json()));
+    fetch('/removeGym/' + gym.gymName, {
+      method: 'post',
+    }).then(res => console.log(res.json()));
 
     delete gyms[gym.gymName];
     this.setState({gyms});
