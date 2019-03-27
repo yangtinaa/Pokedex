@@ -38,7 +38,10 @@ class Pokemon extends Component {
     }
 
     render() {
-      if (!this.state.pokemon) {return null;}
+      if (!this.state.pokemon || Object.values(this.state.pokemon).length === 0) {
+        return <div>You have no captured pokemon!</div>;
+      }
+
       return (
         <div>
           {Object.values(this.state.pokemon).map(p => (
@@ -55,15 +58,17 @@ class Pokemon extends Component {
                   <div>Gender: {p.gender || "Unknown"}</div>
                   <div>Type: {p.type || "Unknown"}</div>
                 </div>
-                <div style={{marginLeft: "20px"}}>
-                  <div style={{marginBottom: "10px"}}>Moves:</div>
-                  {p.moves.map(m => (
-                    <div key={m.moveName} style={{marginBottom: "5px"}}>
-                      <div>Move Name: {m.moveName}</div>
-                      <div>Power Point: {m.powerPoint}</div>
-                    </div>
-                  ))}
-                </div>
+                {p.moves.length === 0 ? null :
+                  <div style={{marginLeft: "20px"}}>
+                    <div style={{marginBottom: "10px"}}>Moves:</div>
+                    {p.moves.map(m => (
+                      <div key={m.moveName} style={{marginBottom: "5px"}}>
+                        <div>Move Name: {m.moveName}</div>
+                        <div>Power Point: {m.powerPoint}</div>
+                      </div>
+                    ))}
+                  </div>
+                }
               </div>
           ))}
         </div>

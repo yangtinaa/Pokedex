@@ -56,8 +56,8 @@ class Gyms extends Component {
           const {gymName, badgeName, townName, badgeImage, gymLeaders} = g;
           const gymLeadersString = gymLeaders.join(', ');
           return (
-            <div className="gym-container">
-              <div key={gymName + gymLeadersString} className="gym">
+            <div key={gymName + gymLeadersString} className="gym-container">
+              <div className="gym">
                 {
                   badgeImage ?
                     <img
