@@ -113,7 +113,8 @@ VALUES
        (7, 'Sabrina', 25, 'Female', 'Saffron City', 'https://cdn.bulbagarden.net/upload/2/20/VSSabrina_PE.png'),
        (8, 'Blaine', 60, 'Male', 'Cinnabar Island', 'https://cdn.bulbagarden.net/upload/1/11/VSBlaine_PE.png'),
        (9, 'Giovanni', 40, 'Male', 'Viridian City', 'https://cdn.bulbagarden.net/upload/4/4a/VSGiovanni_PE.png'),
-       (10, 'Gary Oak', 10, 'Male', 'Pallet Town', 'https://cdn.bulbagarden.net/upload/a/ad/Gary_Oak_BW.png');
+       (10, 'Gary Oak', 10, 'Male', 'Pallet Town', 'https://cdn.bulbagarden.net/upload/a/ad/Gary_Oak_BW.png'),
+       (11, 'Professor Oak', 47, 'Male', 'Pallet Town', 'https://cdn.bulbagarden.net/upload/3/3e/Lets_Go_Pikachu_Eevee_Professor_Oak.png');
 
 INSERT INTO  Gym_LocatedIn_Town(gymName, badgeName, townName, badgeImage)
 VALUES
@@ -184,8 +185,8 @@ where name = 'Psychic';
 INSERT INTO Pokemon(name, type, image)
 VALUES
       ('Charmander', 'Fire', 'https://cdn.bulbagarden.net/upload/7/73/004Charmander.png'),
-       ('Squirtle', 'Water', 'https://cdn.bulbagarden.net/upload/3/39/007Squirtle.png'),
-       ('Bulbasaur', 'Grass', 'https://cdn.bulbagarden.net/upload/2/21/001Bulbasaur.png'),
+      ('Squirtle', 'Water', 'https://cdn.bulbagarden.net/upload/3/39/007Squirtle.png'),
+      ('Bulbasaur', 'Grass', 'https://cdn.bulbagarden.net/upload/2/21/001Bulbasaur.png'),
       ('Staryu', 'Water', 'https://cdn.bulbagarden.net/upload/4/4f/120Staryu.png'),
       ('Gloom', 'Grass', 'https://cdn.bulbagarden.net/upload/2/2a/044Gloom.png'),
       ('Ninetales', 'Fire', 'https://cdn.bulbagarden.net/upload/0/05/038Ninetales.png'),
@@ -209,7 +210,21 @@ VALUES
        (8, 'Onix', 'Male', 9), #Onix - Giovanni
        (9, 'Kadabra', 'Male', 7), #Kadabra - Sabrina
        (10, 'Squirtle', 'Male', 0), #Squirtle - Ash
-       (11, 'Charmander', 'Male', 0); #Charmander - Ash
+       (11, 'Charmander', 'Male', 0), #Charmander - Ash
+       (12, 'Pikachu', 'Male', 11), #Pikachu - Professor Oak
+       (13, 'Staryu', 'Female', 11),  #Staryu - Professor Oak
+       (14, 'Gloom', 'Female', 11), #Gloom - Professor Oak
+       (15, 'Ninetales', 'Female', 11), #Ninetales - Professor Oak
+       (16, 'Geodude', 'Male', 11), #Geodude - Professor Oak
+       (17, 'Raichu', 'Male', 11), #Raichu - Professor Oak
+       (18, 'Venonat', 'Male', 11), #Venonat - Professor Oak
+       (19, 'Onix', 'Male', 11), #Onix - Professor Oak
+       (20, 'Kadabra', 'Male', 11), #Kadabra - Professor Oak
+       (21, 'Squirtle', 'Male', 11), #Squirtle - Professor Oak
+       (22, 'Charmander', 'Male', 11), #Charmander - Professor Oak
+       (23, 'Bulbasaur', 'Female', 11), #Bulbusaur - Professor Oak
+       (24, 'Deoxys', 'Male', 11); #Deoxys - Professor Oak
+
 
 INSERT INTO Trainer_Encounters_Pokemon(pokemonName, trainerID)
 VALUES
