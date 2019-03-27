@@ -95,7 +95,7 @@ class Explore extends Component {
             <div>
               <div style={{marginBottom: "10px"}}>Encountered Pokemon:</div>
               {this.state.encountered.map(p => (
-                <div key={p.name} className="pokemon-card">
+                <div key={p.name} className="pokemon-container">
                   {
                     p.image ?
                       <img
@@ -116,7 +116,7 @@ class Explore extends Component {
               <div style={{marginBottom: "10px", marginTop: "20px"}}>New Pokemon:</div>
               {this.state.allPokemon.map(p => (
                 <div key={p.name} style={{position: "relative"}}>
-                  <div className="pokemon-container">
+                  <div className="pokemon-container pokemon-w-overlay">
                     <div className="pokemon-card">
                       {
                         p.image ?

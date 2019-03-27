@@ -46,9 +46,11 @@ module.exports = function(app, connection) {
     const userId = req.params.userId;
 
     const select = 'SELECT pcb.id, p.name, p.type, p.image, mb.moveName, mb.powerPoint ';
-    const from = 'FROM pokemon p, pokemon_CapturedBy pcb, PokemonLearnsMoveA ma, PokemonLearnsMoveB mb ';
-    const where = 'WHERE pcb.name = p.name AND pcb.capturedBy = ' + userId + ' AND ma.pokemonID = pcb.id AND mb.moveName = ma.moveName;';
-    const query = select + from + where;
+    const from = 'FROM pokemon p, pokemon_CapturedBy pcb ';
+    const join1 = 'LEFT JOIN pokemonLearnsMoveA ma ON ma.pokemonid = pcb.id '
+    const join2 = 'LEFT JOIN pokemonLearnsMoveB mb ON mb.movename = ma.movename '
+    const where = 'WHERE pcb.name = p.name AND pcb.capturedBy = ' + userId + ';';
+    const query = select + from + join1 + join2 + where;
 
     connection.query(query, function(err, data) {
       err ? res.send(err) : res.send(data);

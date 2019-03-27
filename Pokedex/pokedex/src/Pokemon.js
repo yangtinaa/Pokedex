@@ -43,7 +43,7 @@ class Pokemon extends Component {
       return (
         <div>
           {Object.values(this.state.pokemon).map(p => (
-              <div key={p.id} className="pokemon-card">
+              <div key={p.id} className="pokemon-container">
                 {
                   p.image ?
                     <img
