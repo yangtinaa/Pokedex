@@ -11,16 +11,37 @@ class Trainers extends Component {
   }
 
   componentDidMount() {
-    fetch('/trainers')
-      .then(res => res.json())
-      .then(trainers => this.setState({trainers: trainers}));
+    const trainersReq = fetch('/trainers').then(res => res.json());
+    const pokemonCountsReq = fetch('/pokemonCount').then(res => res.json());
+
+    Promise.all([trainersReq, pokemonCountsReq]).then(values =>
+      this._processData(values[0], values[1])
+    )
+  }
+
+  _processData(trainersRes, pokemonCountRes) {
+    const trainers = {};
+
+    let i;
+    for (i = 0; i < trainersRes.length; i++) {
+      const t = trainersRes[i];
+      trainers[t.id] = t;
+    }
+
+    let j;
+    for (j = 0; j < pokemonCountRes.length; j++) {
+      const count = pokemonCountRes[j];
+      trainers[count.id].pokemonCount = count['COUNT(*)'];
+    }
+
+    this.setState({trainers: Object.values(trainers)});
   }
 
   render() {
     return (
       <div>
         {this.state.trainers.map(t => {
-          if (t.id === 0) {
+          if (t.id === this.state.id) {
             return null;
           }
 

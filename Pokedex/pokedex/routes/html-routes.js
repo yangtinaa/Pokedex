@@ -54,6 +54,20 @@ module.exports = function(app, connection) {
     });
   });
 
+  app.get('/pokemonCount', function(req, res) {
+    const userId = req.params.userId;
+
+    const select = 'SELECT t.id, COUNT(*) ';
+    const from = 'FROM Trainer t ';
+    const join = 'LEFT OUTER JOIN Pokemon_CapturedBy p ON t.id = p.capturedBy ';
+    const group = 'GROUP BY t.id;'
+    const query = select + from + join + group;
+
+    connection.query(query, function(err, data) {
+      err ? res.send(err) : res.send(data);
+    });
+  });
+
   app.get('/pokemonCount/:userId', function(req, res) {
     const userId = req.params.userId;
 
