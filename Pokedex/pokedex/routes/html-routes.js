@@ -70,6 +70,14 @@ module.exports = function(app, connection) {
     });
   });
 
+  app.get('/towns', function(req, res) {
+    const query = 'SELECT name FROM town;';
+
+    connection.query(query, function(err, data) {
+      err ? res.send(err) : res.send(data);
+    });
+  });
+
   app.get('/gyms', function(req, res) {
     const select = 'SELECT g.gymName, g.badgeName, g.badgeImage, g.townName, t.name ';
     const from = 'FROM Gym_LocatedIn_Town g, GymLeader_of_Gym gl, Trainer t '

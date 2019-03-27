@@ -39,7 +39,7 @@ class Explore extends Component {
 
     _initializeData(data, totalData, typesData) {
       const {encountered, allPokemon} = this._processData(data, totalData);
-      const types = [... new Set(typesData.map(t => t.type))];
+      const types = [...new Set(typesData.map(t => t.type))];
 
       this.setState({encountered, allPokemon, types});
     }

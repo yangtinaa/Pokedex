@@ -9,14 +9,25 @@ class About extends Component {
           info: null,
           edit: null,
           editing: false,
+          towns: [],
         }
     }
 
     componentDidMount() {
       // Temporarily hardcoded until we can pass ID from login page
-      fetch('/user/0')
-        .then(res => res.json())
-        .then(data => this.setState({info: data[0], edit: data[0]}));
+      const infoReq = fetch('/user/0').then(res => res.json());
+      const townsReq = fetch('/towns').then(res => res.json());
+
+      Promise.all([infoReq, townsReq]).then(values =>
+        this._processData(values[0], values[1])
+      )
+    }
+
+    _processData(infoRes, townsRes) {
+      const towns = townsRes.map(t => t.name);
+      const info = infoRes[0];
+
+      this.setState({info, edit: info, towns: towns});
     }
 
     _handleFormChange(newEditState) {
@@ -100,11 +111,12 @@ class About extends Component {
               </label>
               <label>
                   Hometown:
-                  <input type="text"
-                         name="hometown"
-                         id="hometown"
-                         value={edit.hometown}
-                         onChange={event => this.handleInputChange(event)} />
+                  <select id="hometown"
+                          name="hometown"
+                          value={edit.hometown || "unknown"}
+                          onChange={event => this.handleInputChange(event)}>
+                    {this.state.towns.map(t => <option key={t} value={t}>{t}</option>)}
+                  </select>
               </label>
             </div>
           </div>
