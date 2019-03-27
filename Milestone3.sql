@@ -104,7 +104,7 @@ VALUES
        (6, 'Janine', 21, 'Female', 'Fuchsia City', 'https://cdn.bulbagarden.net/upload/archive/2/21/20120731091150%21Spr_HGSS_Janine.png'),
        (7, 'Sabrina', 25, 'Female', 'Saffron City', 'https://cdn.bulbagarden.net/upload/2/20/VSSabrina_PE.png'),
        (8, 'Blaine', 60, 'Male', 'Cinnabar Island', 'https://cdn.bulbagarden.net/upload/1/11/VSBlaine_PE.png'),
-       (9, 'Giovanni', 40, 'Male', 'Viridian City', 'https://cdn.bulbagarden.net/upload/1/11/VSBlaine_PE.png');
+       (9, 'Giovanni', 40, 'Male', 'Viridian City', 'https://cdn.bulbagarden.net/upload/4/4a/VSGiovanni_PE.png');
 
 INSERT INTO  Gym_LocatedIn_Town(gymName, badgeName, townName, badgeImage)
 VALUES
