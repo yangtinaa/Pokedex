@@ -141,6 +141,20 @@ module.exports = function(app, connection) {
     });
   });
 
+  app.get('/loginInfo/:username/:password', function(req, res) {
+    const username = req.params.username;
+    const password = req.params.password;
+
+    const select = 'SELECT l.id ';
+    const from = 'FROM Login_Information l ';
+    const where = 'WHERE l.username = "' + username + '" AND l.password = "' + password + '";';
+    const query = select + from + where;
+
+    connection.query(query, function(err, data) {
+      err ? res.send(err) : res.send(data);
+    });
+  });
+
   app.post('/encounter/:userId/:pokemonName', function(req, res) {
     const userId = req.params.userId;
     const pokemonName = req.params.pokemonName;

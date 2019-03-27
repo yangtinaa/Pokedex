@@ -5,8 +5,7 @@ class Trainers extends Component {
   constructor(props) {
       super(props);
       this.state = {
-        // Hardcoded until we can pass current id down from homePage
-        id: 0,
+        id: this.props.id,
         trainers: []
       }
   }

@@ -5,8 +5,7 @@ class Pokemon extends Component {
     constructor(props) {
         super(props);
         this.state = {
-          // Temp hardcoded
-          userId: 0
+          userId: this.props.id
         };
     }
 

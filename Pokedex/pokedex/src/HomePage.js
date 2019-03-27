@@ -15,6 +15,7 @@ import Gyms from "./Gyms";
 
 class HomePage extends Component {
     render() {
+        const idProp = this.props.userid;
         return (
           <HashRouter>
             <div>
@@ -26,11 +27,11 @@ class HomePage extends Component {
                 <li><NavLink to="/explore">Explore</NavLink></li>
               </ul>
               <div className="content">
-                <Route exact path="/" component={About}/>
-                <Route exact path="/pokemon" component={Pokemon}/>
-                <Route exact path="/trainers" component={Trainers}/>
+                <Route exact path="/" render={(props) => <About {...props} id={idProp} />}/>
+                <Route exact path="/pokemon" render={(props) => <Pokemon {...props} id={idProp} />}/>
+                <Route exact path="/trainers" render={(props) => <Trainers {...props} id={idProp} />}/>
                 <Route exact path="/gyms" component={Gyms}/>
-                <Route exact path="/explore" component={Explore}/>
+                <Route exact path="/explore" render={(props) => <Explore {...props} id={idProp} />}/>
               </div>
             </div>
           </HashRouter>

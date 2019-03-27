@@ -10,8 +10,7 @@ class About extends Component {
           edit: null,
           editing: false,
           towns: [],
-          // temp hardcoded
-          userId: 0,
+          userId: this.props.id,
         }
     }
 

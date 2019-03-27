@@ -7,9 +7,9 @@ class LoginPage extends Component {
     constructor(props) {
         super(props);
         this.state = {
+            id: "",
             username: "",
             password: "",
-            redirect: false,
         };
 
         this.handleChange = this.handleChange.bind(this);
@@ -30,20 +30,22 @@ class LoginPage extends Component {
     handleSubmit(event) {
         event.preventDefault();
 
-        // hardcoding login for now, can add real login later
-        // https://serverless-stack.com/chapters/login-with-aws-cognito.html
-        if (this.state.username === "trainer" && this.state.password === "1234") {
-            this.setState({
-                redirect: true,
+        const loginReq = fetch('/LoginInfo/' + this.state.username + '/' + this.state.password)
+            .then(res => res.json())
+            .then(function (id) {
+                return id[0].id;
+            })
+            .catch(function (err) {
+                console.error(err);
+                alert("Invalid login");
             });
-        } else {
-            alert("Invalid login")
-        }
+
+        loginReq.then(id => this.setState({id: id}));
     }
 
     render() {
-        if (this.state.redirect) {
-            return <HomePage />
+        if (this.state.id || this.state.id === 0) { // need to do this because 0 counts as falsy value
+            return <HomePage userid={this.state.id}/>
         }
 
         return (

@@ -13,8 +13,7 @@ class Explore extends Component {
           filter: "All",
           displayImage: true,
           displayType: true,
-          // Temporarily hardcoded userId
-          userId: 0,
+          userId: this.props.id,
         };
     }
 
