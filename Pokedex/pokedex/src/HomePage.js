@@ -15,7 +15,7 @@ import Gyms from "./Gyms";
 
 class HomePage extends Component {
     render() {
-        const idProp = this.props.userid;
+        const idProp = this.props.userId;
         return (
           <HashRouter>
             <div>

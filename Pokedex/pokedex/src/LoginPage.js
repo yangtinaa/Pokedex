@@ -17,10 +17,6 @@ class LoginPage extends Component {
 
     }
 
-    // validateForm() {
-    //     return this.state.username > 0 && this.state.password > 0;
-    // }
-
     handleChange(event) {
         this.setState({
             [event.target.id]: event.target.value
@@ -30,22 +26,18 @@ class LoginPage extends Component {
     handleSubmit(event) {
         event.preventDefault();
 
-        const loginReq = fetch('/LoginInfo/' + this.state.username + '/' + this.state.password)
+        fetch('/LoginInfo/' + this.state.username + '/' + this.state.password)
             .then(res => res.json())
-            .then(function (id) {
-                return id[0].id;
-            })
+            .then(id => this.setState({id: id[0].id}))
             .catch(function (err) {
                 console.error(err);
                 alert("Invalid login");
             });
-
-        loginReq.then(id => this.setState({id: id}));
     }
 
     render() {
         if (this.state.id || this.state.id === 0) { // need to do this because 0 counts as falsy value
-            return <HomePage userid={this.state.id}/>
+            return <HomePage userId={this.state.id}/>
         }
 
         return (
