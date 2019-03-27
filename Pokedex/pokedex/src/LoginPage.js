@@ -41,25 +41,27 @@ class LoginPage extends Component {
         }
 
         return (
-            <div>
+            <div style={{marginTop: "20px"}}>
                 <form onSubmit={this.handleSubmit}>
                     <div className='login-form'>
                         <label>
                             Username:
                             <input type="text"
                                    id="username"
+                                   style={{marginLeft: "5px"}}
                                    onChange={this.handleChange}
                             />
                         </label>
-                        <label>
+                        <label style={{marginTop: "5px"}}>
                             Password:
                             <input type="password"
                                    id="password"
+                                   style={{marginLeft: "5px"}}
                                    onChange={this.handleChange}
                             />
                         </label>
 
-                        <input type="submit" value="Submit"/>
+                        <input style={{marginTop: "20px"}} type="submit" value="Log In"/>
                     </div>
                 </form>
 
