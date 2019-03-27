@@ -11,6 +11,8 @@ class Explore extends Component {
           allPokemon: [],
           types: [],
           filter: "All",
+          displayImage: true,
+          displayType: true,
           // Temporarily hardcoded userId
           userId: 0,
         };
@@ -28,16 +30,39 @@ class Explore extends Component {
 
     componentDidUpdate(prevProps, prevState) {
       if (prevState.filter !== this.state.filter) {
-        const encounteredReq = this.state.filter === 'All' ?
-          fetch('/encountered/' + this.state.userId).then(res => res.json()) :
-          fetch('/encountered/' + this.state.userId + '/' + this.state.filter).then(res => res.json());
-        const allPokemonReq = this.state.filter === 'All' ?
-          fetch('/pokemon').then(res => res.json()) :
-          fetch('/filteredPokemon/' + this.state.filter).then(res => res.json());
+        const encounteredReqPath = this.state.filter === 'All' ?
+          '/encountered/' + this.state.userId :
+          '/encountered/' + this.state.userId + '/' + this.state.filter;
+
+        const allPokemonReqPath = this.state.filter === 'All' ?
+          '/pokemon' :
+          '/filteredPokemon/' + this.state.filter;
+
+        const encounteredReq = fetch(encounteredReqPath).then(res => res.json());
+        const allPokemonReq = fetch(allPokemonReqPath).then(res => res.json());
 
         Promise.all([encounteredReq, allPokemonReq]).then(values =>
           this._updateData(values[0], values[1])
         )
+      }
+
+      if (prevState.displayType !== this.state.displayType
+            || prevState.displayImage !== this.state.displayImage) {
+
+        const reqPath = this.state.displayType && this.state.displayImage ?
+          '/pokemon' :
+          this.state.displayType ?
+            '/pokemonTypeOnly' :
+            this.state.displayImage ?
+              '/pokemonImageOnly' :
+              '/pokemonNameOnly';
+
+        fetch(reqPath)
+          .then(res => res.json())
+          .then(allPokemon => {
+            const encountered = this.state.encountered.map(e => ({pokemonName: e.name}));
+            return this._updateData(encountered, allPokemon);
+          })
       }
     }
 
@@ -88,10 +113,20 @@ class Explore extends Component {
       this.setState({encountered: encountered.filter(p => p.name !== pokemon.name), allPokemon});
     }
 
-    render() {
+    _handleChange(event) {
+      const {name, checked} = event.target;
+
+      if (name === 'type') {
+        this.setState({displayType: checked});
+      } else if (name === 'image') {
+        this.setState({displayImage: checked});
+      }
+    }
+
+    _renderToolBar() {
       return (
-        <div>
-          <div style={{display: "flex", flexDirection: "row", marginBottom: "20px"}}>
+        <div style={{display: "flex", flexDirection: "row", justifyContent: "space-between", marginBottom: "20px"}}>
+          <div style={{display: "flex", flexDirection: "row"}}>
             <div style={{marginRight: "10px"}}>Filters:</div>
             <select id="type"
                     name="type"
@@ -103,6 +138,28 @@ class Explore extends Component {
               ))}
             </select>
           </div>
+          <div style={{display: "flex", flexDirection: "row"}}>
+            <div style={{marginRight: "10px"}}>View:</div>
+            Image
+            <input style={{marginRight: "10px"}}
+                   type="checkbox"
+                   name="image"
+                   checked={this.state.displayImage}
+                   onChange={event => this._handleChange(event)} />
+            Type
+            <input type="checkbox"
+                   name="type"
+                   checked={this.state.displayType}
+                   onChange={event => this._handleChange(event)} />
+          </div>
+        </div>
+      )
+    }
+
+    render() {
+      return (
+        <div>
+          {this._renderToolBar()}
           {this.state.encountered.length === 0 ? null :
             <div>
               <div style={{marginBottom: "10px"}}>Encountered Pokemon:</div>

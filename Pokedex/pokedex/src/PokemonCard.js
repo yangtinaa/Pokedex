@@ -16,7 +16,7 @@ class PokemonCard extends Component {
           }
           <div className="pokemon-info">
             <div>Name: {p.name}</div>
-            <div>Type: {p.type || "Unknown"}</div>
+            {p.type ? <div>Type: {p.type}</div> : null}
           </div>
         </div>
     );

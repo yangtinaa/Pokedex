@@ -33,6 +33,27 @@ module.exports = function(app, connection) {
     });
   });
 
+  app.get('/pokemonTypeOnly', function(req, res) {
+    const query = 'SELECT type, name FROM Pokemon';
+    connection.query(query, function(err, data) {
+      err ? res.send(err) : res.send(data);
+    });
+  });
+
+  app.get('/pokemonImageOnly', function(req, res) {
+    const query = 'SELECT image, name FROM Pokemon';
+    connection.query(query, function(err, data) {
+      err ? res.send(err) : res.send(data);
+    });
+  });
+
+  app.get('/pokemonNameOnly', function(req, res) {
+    const query = 'SELECT name FROM Pokemon';
+    connection.query(query, function(err, data) {
+      err ? res.send(err) : res.send(data);
+    });
+  });
+
   app.get('/filteredPokemon/:type', function(req, res) {
     const type = req.params.type;
 
