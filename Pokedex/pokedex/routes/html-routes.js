@@ -115,4 +115,17 @@ module.exports = function(app, connection) {
       err ? res.send(err) : res.send(data);
     });
   });
+
+  app.post('/encounter/:userId/:pokemonName', function(req, res) {
+    const userId = req.params.userId;
+    const pokemonName = req.params.pokemonName;
+
+    const insert = 'INSERT INTO Trainer_Encounters_Pokemon(pokemonName, trainerID) ';
+    const values = 'VALUES ("' + pokemonName + '", ' + userId + ');';
+    const query = insert + values;
+
+    connection.query(query, function(err, data) {
+      err ? res.send(err) : res.send(data);
+    });
+  });
 };

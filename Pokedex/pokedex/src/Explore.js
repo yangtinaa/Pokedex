@@ -9,31 +9,31 @@ class Explore extends Component {
           allPokemon: [],
           types: [],
           filter: "All",
+          // Temporarily hardcoded userId
+          userId: 0,
         };
     }
 
     componentDidMount() {
-      // Temporarily hardcoded userId
-      const encounteredReq = fetch('/encountered/0').then(res => res.json());
+      const encounteredReq = fetch('/encountered/' + this.state.userId).then(res => res.json());
       const allPokemonReq = fetch('/pokemon').then(res => res.json());
       const typeReq = fetch('/pokemonTypes').then(res => res.json());
 
-      Promise.all([encounteredReq,allPokemonReq, typeReq]).then(values =>
+      Promise.all([encounteredReq, allPokemonReq, typeReq]).then(values =>
         this._initializeData(values[0], values[1], values[2])
       )
     }
 
     componentDidUpdate(prevProps, prevState) {
       if (prevState.filter !== this.state.filter) {
-        // Temporarily hardcoded userId
         const encounteredReq = this.state.filter === 'All' ?
-          fetch('/encountered/0').then(res => res.json()) :
-          fetch('/encountered/0/' + this.state.filter).then(res => res.json());
+          fetch('/encountered/' + this.state.userId).then(res => res.json()) :
+          fetch('/encountered/' + this.state.userId + '/' + this.state.filter).then(res => res.json());
         const allPokemonReq = this.state.filter === 'All' ?
           fetch('/pokemon').then(res => res.json()) :
           fetch('/filteredPokemon/' + this.state.filter).then(res => res.json());
 
-        Promise.all([encounteredReq,allPokemonReq]).then(values =>
+        Promise.all([encounteredReq, allPokemonReq]).then(values =>
           this._updateData(values[0], values[1])
         )
       }
@@ -64,6 +64,16 @@ class Explore extends Component {
       }
 
       return {encountered, allPokemon};
+    }
+
+    _handleEncounter(pokemon) {
+      const {encountered, allPokemon} = this.state;
+      fetch('/encounter/' + this.state.userId + '/' + pokemon.name, {
+        method: 'post',
+      }).then(res => console.log(res.json()));
+
+      encountered.push(pokemon);
+      this.setState({encountered, allPokemon: allPokemon.filter(p => p.name !== pokemon.name)});
     }
 
     render() {
@@ -106,18 +116,24 @@ class Explore extends Component {
               <div style={{marginBottom: "10px", marginTop: "20px"}}>New Pokemon:</div>
               {this.state.allPokemon.map(p => (
                 <div key={p.name} style={{position: "relative"}}>
-                  <div className="pokemon-card">
-                    {
-                      p.image ?
-                        <img
-                          className="pokemon-img"
-                          src={p.image}
-                          alt={p.name || "pokemon image"} /> : null
-                    }
-                    <div className="pokemon-info">
-                      <div>Name: {p.name}</div>
-                      <div>Type: {p.type || "Unknown"}</div>
+                  <div className="pokemon-container">
+                    <div className="pokemon-card">
+                      {
+                        p.image ?
+                          <img
+                            className="pokemon-img"
+                            src={p.image}
+                            alt={p.name || "pokemon image"} /> : null
+                      }
+                      <div className="pokemon-info">
+                        <div>Name: {p.name}</div>
+                        <div>Type: {p.type || "Unknown"}</div>
+                      </div>
                     </div>
+                    <button className="pokemon-encounter-button"
+                            onClick={() => this._handleEncounter(p)}>
+                      Encounter
+                    </button>
                   </div>
                   <div className="overlay">
                   </div>

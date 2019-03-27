@@ -1,6 +1,13 @@
 .pokemon-card {
   display: flex;
   flex-direction: row;
+}
+
+.pokemon-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: flex-start;
   border: 1px solid grey;
   padding: 20px;
   margin-bottom: 10px;
@@ -15,6 +22,10 @@
 .pokemon-info {
   display: flex;
   flex-direction: column;
+}
+
+.pokemon-encounter-button {
+  z-index: 11;
 }
 
 .overlay{
