@@ -219,8 +219,8 @@ module.exports = function(app, connection) {
     });
   });
 
-  app.get('/stats', function(req, res) {
-    const outerQuery = 'SELECT t.name, t.id FROM Trainer t WHERE NOT EXISTS (SELECT * from Pokemon p WHERE NOT EXISTS ';
+  app.get('/masters', function(req, res) {
+    const outerQuery = 'SELECT * FROM Trainer t WHERE NOT EXISTS (SELECT * from Pokemon p WHERE NOT EXISTS ';
     const innerQuery = '(SELECT pc.CapturedBy FROM Pokemon_CapturedBy pc WHERE t.id = pc.CapturedBy AND p.name = pc.name));';
     const query = outerQuery + innerQuery;
 

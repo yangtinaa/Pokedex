@@ -12,7 +12,7 @@ import Pokemon from "./Pokemon";
 import Trainers from "./Trainers";
 import Explore from "./Explore";
 import Gyms from "./Gyms";
-import Stats from "./Stats";
+import Masters from "./Masters";
 
 class HomePage extends Component {
     constructor(props) {
@@ -55,8 +55,8 @@ class HomePage extends Component {
                   <NavLink to="/explore">Explore</NavLink>
                 </li>
                 {!this._isAdmin() ? null :
-                  <li className={(tab === "Stats") ? "selectedTab" : null} onClick={() => this._handleChange("Stats")}>
-                    <NavLink to="/stats">Stats</NavLink>
+                  <li className={(tab === "Masters") ? "selectedTab" : null} onClick={() => this._handleChange("Masters")}>
+                    <NavLink to="/masters">Masters</NavLink>
                   </li>
                 }
               </ul>
@@ -66,7 +66,7 @@ class HomePage extends Component {
                 <Route exact path="/trainers" render={(props) => <Trainers {...props} id={idProp} />}/>
                 <Route exact path="/gyms" component={Gyms}/>
                 <Route exact path="/explore" render={(props) => <Explore {...props} id={idProp} />}/>
-                {this._isAdmin() ? <Route exact path="/stats" render={(props) => <Stats {...props} id={idProp} />}/> : null}
+                {this._isAdmin() ? <Route exact path="/masters" render={(props) => <Masters {...props} id={idProp} />}/> : null}
               </div>
             </div>
           </HashRouter>
