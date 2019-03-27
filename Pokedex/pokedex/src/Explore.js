@@ -28,27 +28,11 @@ class Explore extends Component {
     }
 
     componentDidUpdate(prevProps, prevState) {
-      if (prevState.filter !== this.state.filter) {
-        const encounteredReqPath = this.state.filter === 'All' ?
-          '/encountered/' + this.state.userId :
-          '/encountered/' + this.state.userId + '/' + this.state.filter;
-
-        const allPokemonReqPath = this.state.filter === 'All' ?
-          '/pokemon' :
-          '/filteredPokemon/' + this.state.filter;
-
-        const encounteredReq = fetch(encounteredReqPath).then(res => res.json());
-        const allPokemonReq = fetch(allPokemonReqPath).then(res => res.json());
-
-        Promise.all([encounteredReq, allPokemonReq]).then(values =>
-          this._updateData(values[0], values[1])
-        )
-      }
-
-      if (prevState.displayType !== this.state.displayType
+      if (prevState.filter !== this.state.filter
+            || prevState.displayType !== this.state.displayType
             || prevState.displayImage !== this.state.displayImage) {
 
-        const reqPath = this.state.displayType && this.state.displayImage ?
+        const displayPath = this.state.displayType && this.state.displayImage ?
           '/pokemon' :
           this.state.displayType ?
             '/pokemonTypeOnly' :
@@ -56,12 +40,18 @@ class Explore extends Component {
               '/pokemonImageOnly' :
               '/pokemonNameOnly';
 
-        fetch(reqPath)
-          .then(res => res.json())
-          .then(allPokemon => {
-            const encountered = this.state.encountered.map(e => ({pokemonName: e.name}));
-            return this._updateData(encountered, allPokemon);
-          })
+        const filterPath = this.state.filter === 'All' ? '' : '/filter/' + this.state.filter;
+
+        const encounteredReqPath = this.state.filter === 'All' ?
+          '/encountered/' + this.state.userId :
+          '/encountered/' + this.state.userId + '/' + this.state.filter;
+
+        const encounteredReq = fetch(encounteredReqPath).then(res => res.json());
+        const allPokemonReq = fetch(displayPath + filterPath).then(res => res.json());
+
+        Promise.all([encounteredReq, allPokemonReq]).then(values =>
+          this._updateData(values[0], values[1])
+        )
       }
     }
 

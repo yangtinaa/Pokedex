@@ -55,6 +55,42 @@ module.exports = function(app, connection) {
     });
   });
 
+  app.get('/pokemon/filter/:type', function(req, res) {
+    const type = req.params.type;
+
+    const query = 'SELECT * FROM Pokemon WHERE type = "' + type + '";';
+    connection.query(query, function(err, data) {
+      err ? res.send(err) : res.send(data);
+    });
+  });
+
+  app.get('/pokemonTypeOnly/filter/:type', function(req, res) {
+    const type = req.params.type;
+
+    const query = 'SELECT type, name FROM Pokemon WHERE type = "' + type + '";';
+    connection.query(query, function(err, data) {
+      err ? res.send(err) : res.send(data);
+    });
+  });
+
+  app.get('/pokemonImageOnly/filter/:type', function(req, res) {
+    const type = req.params.type;
+
+    const query = 'SELECT image, name FROM Pokemon WHERE type = "' + type + '";';
+    connection.query(query, function(err, data) {
+      err ? res.send(err) : res.send(data);
+    });
+  });
+
+  app.get('/pokemonNameOnly/filter/:type', function(req, res) {
+    const type = req.params.type;
+
+    const query = 'SELECT name FROM Pokemon WHERE type = "' + type + '";';
+    connection.query(query, function(err, data) {
+      err ? res.send(err) : res.send(data);
+    });
+  });
+
   app.get('/pokemonCount', function(req, res) {
     const userId = req.params.userId;
 
@@ -76,15 +112,6 @@ module.exports = function(app, connection) {
     const where = 'WHERE capturedBy = ' + userId;
     const query = select + where;
 
-    connection.query(query, function(err, data) {
-      err ? res.send(err) : res.send(data);
-    });
-  });
-
-  app.get('/filteredPokemon/:type', function(req, res) {
-    const type = req.params.type;
-
-    const query = 'SELECT * FROM Pokemon WHERE type = "' + type + '";';
     connection.query(query, function(err, data) {
       err ? res.send(err) : res.send(data);
     });
