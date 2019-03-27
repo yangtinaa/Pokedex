@@ -1,0 +1,25 @@
+.gym-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: flex-start;
+  border: 1px solid grey;
+  margin-bottom: 10px;
+  padding: 10px;
+}
+
+.gym {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.gym-img {
+  margin-right: 20px;
+  width: 100px;
+}
+
+.gym-info {
+  display: flex;
+  flex-direction: column;
+}

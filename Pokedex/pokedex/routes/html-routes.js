@@ -65,7 +65,9 @@ module.exports = function(app, connection) {
   });
 
   app.get('/trainers', function(req, res) {
-    const query = 'SELECT * FROM trainer;';
+    const select = 'SELECT * FROM trainer t ';
+    const join = 'LEFT OUTER JOIN GymLeader_of_Gym g ON t.id = g.trainerID;'
+    const query = select + join;
 
     connection.query(query, function(err, data) {
       err ? res.send(err) : res.send(data);
@@ -137,6 +139,18 @@ module.exports = function(app, connection) {
 
     const from = 'DELETE FROM Trainer_Encounters_Pokemon ';
     const where = 'WHERE pokemonName = "' + pokemonName + '" AND trainerID = ' + userId + ';';
+    const query = from + where;
+
+    connection.query(query, function(err, data) {
+      err ? res.send(err) : res.send(data);
+    });
+  });
+
+  app.post('/removeGym/:gymName', function(req, res) {
+    const gymName = req.params.gymName;
+
+    const from = 'DELETE FROM Gym_LocatedIn_Town ';
+    const where = 'WHERE gymName = "' + gymName + '";';
     const query = from + where;
 
     connection.query(query, function(err, data) {

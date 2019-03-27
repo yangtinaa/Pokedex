@@ -1,4 +1,5 @@
 import React, {Component} from "react";
+import './css/gym.css'
 
 class Gyms extends Component {
   constructor(props) {
@@ -36,6 +37,18 @@ class Gyms extends Component {
     this.setState({gyms: gyms});
   }
 
+  _handleRemove(gym) {
+    const {gyms} = this.state;
+
+    // Temp comment out until the backend is fixed
+    // fetch('/removeGym/' + gym.gymName, {
+    //   method: 'post',
+    // }).then(res => console.log(res.json()));
+
+    delete gyms[gym.gymName];
+    this.setState({gyms});
+  }
+
   render() {
     return (
       <div>
@@ -43,20 +56,23 @@ class Gyms extends Component {
           const {gymName, badgeName, townName, badgeImage, gymLeaders} = g;
           const gymLeadersString = gymLeaders.join(', ');
           return (
-            <div key={gymName + gymLeadersString} className="about" style={{border: "1px solid grey", marginBottom: "10px", padding: "10px"}}>
-              {
-                badgeImage ?
-                  <img
-                    className="about-img"
-                    src={badgeImage}
-                    alt={gymName || "gym image"} /> : null
-              }
-              <div className="about-info">
-                <div>Gym Name: {gymName}</div>
-                <div>Location: {townName || "Unknown"}</div>
-                <div>Badge Name: {badgeName || "Unknown"}</div>
-                <div>Gym Leader(s): {gymLeadersString || "Unknown"}</div>
+            <div className="gym-container">
+              <div key={gymName + gymLeadersString} className="gym">
+                {
+                  badgeImage ?
+                    <img
+                      className="gym-img"
+                      src={badgeImage}
+                      alt={gymName || "gym image"} /> : null
+                }
+                <div className="gym-info">
+                  <div>Gym Name: {gymName}</div>
+                  <div>Location: {townName || "Unknown"}</div>
+                  <div>Badge Name: {badgeName || "Unknown"}</div>
+                  <div>Gym Leader(s): {gymLeadersString || "Unknown"}</div>
+                </div>
               </div>
+              <button onClick={() => this._handleRemove(g)}>Remove</button>
             </div>
           );
         })}
