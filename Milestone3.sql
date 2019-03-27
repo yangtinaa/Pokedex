@@ -28,8 +28,10 @@ CREATE TABLE Gym_LocatedIn_Town(
 CREATE TABLE GymLeader_Of_Gym(
   trainerID int PRIMARY KEY,
   gymName char(20),
-  FOREIGN KEY (trainerID) REFERENCES Trainer(id),
+  FOREIGN KEY (trainerID) REFERENCES Trainer(id)
+  ON DELETE CASCADE,
   FOREIGN KEY (gymName) REFERENCES Gym_LocatedIn_Town(gymName)
+  ON DELETE CASCADE
 );
 
 CREATE TABLE Type(

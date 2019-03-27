@@ -4,7 +4,7 @@ const path = require("path");
 const bodyParser = require('body-parser');
 
 const PORT = process.env.PORT || 8080;
-const PASSWORD = ''; // FILL IN OWN PASSWORD
+const PASSWORD = 'h1m0b'; // FILL IN OWN PASSWORD
 
 const app = express();
 
