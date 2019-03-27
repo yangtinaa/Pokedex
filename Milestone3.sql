@@ -185,7 +185,8 @@ VALUES
       ('Pikachu', 'Electric', 'https://cdn.bulbagarden.net/upload/0/0d/025Pikachu.png'),
       ('Venonat', 'Poison', 'https://cdn.bulbagarden.net/upload/a/ad/048Venonat.png'),
       ('Onix', 'Ground', 'https://cdn.bulbagarden.net/upload/9/9a/095Onix.png'),
-      ('Kadabra', 'Psychic', 'https://cdn.bulbagarden.net/upload/9/97/064Kadabra.png');
+      ('Kadabra', 'Psychic', 'https://cdn.bulbagarden.net/upload/9/97/064Kadabra.png'),
+      ('Deoxys', 'Psychic', 'https://cdn.bulbagarden.net/upload/e/e7/386Deoxys.png');
 
 INSERT INTO Pokemon_CapturedBy(id, name, gender, capturedBy)
 VALUES
@@ -218,6 +219,7 @@ VALUES
 
 INSERT INTO PokemonLearnsMoveB(moveName, powerPoint)
 VALUES
+		#Pikachu moves
         ('Thunder Shock', 30),
         ('Thunderbolt', 15),
         ('Agility', 30),
@@ -226,6 +228,7 @@ VALUES
 
 INSERT INTO PokemonLearnsMoveA(moveName, pokemonID)
 VALUES
+		#Pikachu moves
         ('Thunder Shock', 0),
         ('Thunderbolt', 0),
         ('Agility', 0),
