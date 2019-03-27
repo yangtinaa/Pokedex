@@ -50,9 +50,10 @@ class About extends Component {
 
     _submitChanges() {
       if (this.state.edit.name !== '') {
+        const gender = this.state.edit.gender === 'Unknown' ? null : this.state.edit.gender;
         fetch('/user/' + this.state.userId, {
           method: 'post',
-          body: JSON.stringify(this.state.edit),
+          body: JSON.stringify({...this.state.edit, gender}),
           headers: new Headers({
             'Content-Type': 'application/json'
           })
@@ -98,25 +99,25 @@ class About extends Component {
                   <input type="number"
                          name="age"
                          id="age"
-                         value={edit.age}
+                         value={edit.age || "Unknown"}
                          onChange={event => this.handleInputChange(event)} />
               </label>
               <label>
                   Gender:
                   <select id="gender"
                           name="gender"
-                          value={edit.gender || "unknown"}
+                          value={edit.gender || "Unknown"}
                           onChange={event => this.handleInputChange(event)}>
                     <option value="Female">Female</option>
                     <option value="Male">Male</option>
-                    <option value="unknown">Unknown</option>
+                    <option value="Unknown">Unknown</option>
                   </select>
               </label>
               <label>
                   Hometown:
                   <select id="hometown"
                           name="hometown"
-                          value={edit.hometown || "unknown"}
+                          value={edit.hometown || "Unknown"}
                           onChange={event => this.handleInputChange(event)}>
                     {this.state.towns.map(t => <option key={t} value={t}>{t}</option>)}
                   </select>

@@ -13,13 +13,14 @@ module.exports = function(app, connection) {
   app.post('/user/:userId', function(req, res) {
     const userId = req.params.userId;
     const body = req.body;
-    const {name, age, hometown} = body;
-    const gender = body.gender == 'unknown' ? null : body.gender;
+    const {name, hometown, gender} = body;
+    const age = body.age ? body.age : 'NULL';
 
     const update = 'UPDATE trainer ';
-    const set = 'SET name = "' + name + '", age = ' + age + ', gender = "' + gender + '", hometown = "' + hometown + '" ';
+    const set1 = 'SET name = "' + name + '"' + ', age = ' + age + ', hometown = "' + hometown + '"';
+    const set2 = gender ? ', gender = "' + gender + '" ' : ', gender = NULL ';
     const where = 'WHERE id = ' + userId + ';';
-    const query = update + set + where;
+    const query = update + set1 + set2 + where;
 
     connection.query(query, function(err, data) {
       err ? res.send(err) : res.send(data);
