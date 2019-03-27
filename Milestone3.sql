@@ -224,7 +224,27 @@ VALUES
         ('Thunderbolt', 15),
         ('Agility', 30),
         ('Quick Attack', 30),
-        ('Iron Tail', 15);
+        ('Iron Tail', 15),
+        #Staryu moves
+        ('Swift', 20),
+        ('Psychic', 10),
+        ('Hydro Pump', 5),
+        ('Surf', 15),
+        #Gloom moves
+        ('Mega Drain', 40),
+        ('Poison Powder', 35),
+        ('Sleep Powder', 15),
+        ('Razor Leaf', 25),
+        #Ninetales moves
+        ('Ember', 25),
+        ('Tail Whip', 30),
+        ('Will-O-Wisp', 15),
+        ('Fire Blast', 5),
+        #Geodude moves
+        ('Defense Curl', 40),
+        ('Sand Attack', 15),
+        ('Rock Throw', 15),
+        ('Self-Destruct', 5);
 
 INSERT INTO PokemonLearnsMoveA(moveName, pokemonID)
 VALUES
@@ -233,4 +253,24 @@ VALUES
         ('Thunderbolt', 0),
         ('Agility', 0),
         ('Quick Attack', 0),
-        ('Iron Tail', 0);
+        ('Iron Tail', 0),
+        #Staryu moves
+        ('Swift', 1),
+        ('Psychic', 1),
+        ('Hydro Pump', 1),
+        ('Surf', 1),
+        #Gloom moves
+        ('Mega Drain', 2),
+        ('Poison Powder', 2),
+        ('Sleep Powder', 2),
+        ('Razor Leaf', 2),
+        #Ninetales moves
+        ('Ember', 3),
+        ('Tail Whip', 3),
+        ('Will-O-Wisp', 3),
+        ('Fire Blast', 3),
+        #Geodude moves
+        ('Defense Curl', 4),
+        ('Sand Attack', 4),
+        ('Rock Throw', 4),
+        ('Self-Destruct', 4);
