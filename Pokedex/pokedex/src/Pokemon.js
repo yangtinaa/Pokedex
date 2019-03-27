@@ -27,7 +27,11 @@ class Pokemon extends Component {
             name,
             type,
             image,
-            moves: [{moveName, powerPoint}]
+            moves: [],
+          }
+
+          if (moveName || powerPoint) {
+            pokemon[id].moves.push({moveName, powerPoint});
           }
         } else {
           pokemon[id].moves.push({moveName, powerPoint});
@@ -41,7 +45,7 @@ class Pokemon extends Component {
       if (!this.state.pokemon || Object.values(this.state.pokemon).length === 0) {
         return <div>You have no captured pokemon!</div>;
       }
-
+      
       return (
         <div>
           {Object.values(this.state.pokemon).map(p => (
@@ -63,8 +67,8 @@ class Pokemon extends Component {
                     <div style={{marginBottom: "10px"}}>Moves:</div>
                     {p.moves.map(m => (
                       <div key={m.moveName} style={{marginBottom: "5px"}}>
-                        <div>Move Name: {m.moveName}</div>
-                        <div>Power Point: {m.powerPoint}</div>
+                        {m.moveName ? <div>Name: {m.moveName}</div> : null}
+                        {m.powerPoint ? <div>Power Point: {m.powerPoint}</div> : null}
                       </div>
                     ))}
                   </div>

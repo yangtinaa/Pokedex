@@ -33,3 +33,7 @@ ul.menu li a {
 .content li {
   margin-bottom: 10px;
 }
+
+ul.menu li.selectedTab a {
+  color: darkgrey;
+}
