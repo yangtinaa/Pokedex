@@ -4,22 +4,43 @@ import './css/pokemon.css'
 class Pokemon extends Component {
     constructor(props) {
         super(props);
-        this.state = {
-          pokemon: []
-        }
+        this.state = null;
     }
 
     componentDidMount() {
       // Temporarily hardcoded until we can pass ID from login page
       fetch('/pokemon/0')
         .then(res => res.json())
-        .then(pokemon => this.setState({pokemon: pokemon}));
+        .then(data => this._processData(data));
+    }
+
+    _processData(data) {
+      const pokemon = {};
+
+      let i;
+      for (i = 0; i < data.length; i++) {
+        const {id, name, type, image, moveName, powerPoint} = data[i];
+        if (!pokemon[id]) {
+          pokemon[id] = {
+            id,
+            name,
+            type,
+            image,
+            moves: [{moveName, powerPoint}]
+          }
+        } else {
+          pokemon[id].moves.push({moveName, powerPoint});
+        }
+      }
+
+      this.setState({pokemon: pokemon});
     }
 
     render() {
+      if (!this.state) {return null;}
       return (
         <div>
-          {this.state.pokemon.map(p => (
+          {Object.values(this.state.pokemon).map(p => (
               <div key={p.id} className="pokemon-card">
                 {
                   p.image ?
@@ -32,6 +53,15 @@ class Pokemon extends Component {
                   <div>Name: {p.name}</div>
                   <div>Gender: {p.gender || "Unknown"}</div>
                   <div>Type: {p.type || "Unknown"}</div>
+                </div>
+                <div style={{marginLeft: "20px"}}>
+                  <div style={{marginBottom: "10px"}}>Moves:</div>
+                  {p.moves.map(m => (
+                    <div key={m.moveName} style={{marginBottom: "5px"}}>
+                      <div>Move Name: {m.moveName}</div>
+                      <div>Power Point: {m.powerPoint}</div>
+                    </div>
+                  ))}
                 </div>
               </div>
           ))}

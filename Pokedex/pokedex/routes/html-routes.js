@@ -25,7 +25,10 @@ module.exports = function(app, connection) {
 
   app.get('/pokemon/:userId', function(req, res) {
     const userId = req.params.userId;
-    const query = 'SELECT pcb.id, p.name, p.type, p.image FROM pokemon p, pokemon_CapturedBy pcb WHERE pcb.name = p.name AND pcb.capturedBy = ' + userId;
+    const select = 'SELECT pcb.id, p.name, p.type, p.image, mb.moveName, mb.powerPoint ';
+    const from = 'FROM pokemon p, pokemon_CapturedBy pcb, PokemonLearnsMoveA ma, PokemonLearnsMoveB mb ';
+    const where = 'WHERE pcb.name = p.name AND pcb.capturedBy = ' + userId + ' AND ma.pokemonID = pcb.id AND mb.moveName = ma.moveName;';
+    const query = select + from + where;
 
     connection.query(query, function(err, data) {
       err ? res.send(err) : res.send(data);
