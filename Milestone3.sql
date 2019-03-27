@@ -58,10 +58,10 @@ CREATE TABLE Pokemon_CapturedBy(
 );
 
 CREATE TABLE Trainer_Encounters_Pokemon(
-  pokemonID INT,
+  pokemonName char(20),
   trainerID INT,
-  PRIMARY KEY (pokemonID, trainerID),
-  FOREIGN KEY (pokemonID) REFERENCES Pokemon_CapturedBy(id),
+  PRIMARY KEY (pokemonName, trainerID),
+  FOREIGN KEY (pokemonName) REFERENCES Pokemon(name),
   FOREIGN KEY (trainerID) REFERENCES Trainer(id)
 );
 
@@ -201,19 +201,20 @@ VALUES
        (10, 'Squirtle', 'Male', 0), #Squirtle - Ash
        (11, 'Charmander', 'Male', 0); #Charmander - Ash
 
-INSERT INTO Trainer_Encounters_Pokemon(pokemonID, trainerID)
+INSERT INTO Trainer_Encounters_Pokemon(pokemonName, trainerID)
 VALUES
-       (0,  0), #Pikachu - Ash
-       (1, 2),  #Staryu - Misty
-       (2, 4), #Gloom - Erika
-       (3, 8), #Ninetales - Blaine
-       (4, 1), #Geodude - Brock
-       (5, 3), #Raichu - Lt.Surge
-       (6, 5), #Venonat - Koga
-       (8, 9), #Onix - Giovanni
-       (9, 7), #Kadabra - Sabrina
-       (10, 0), #Squirtle - Ash
-       (11, 0); #Charmander - Ash
+       ('Pikachu',  0), #Pikachu - Ash
+       ('Staryu', 2),  #Staryu - Misty
+       ('Gloom', 4), #Gloom - Erika
+       ('Ninetales', 8), #Ninetales - Blaine
+       ('Geodude', 1), #Geodude - Brock
+       ('Raichu', 3), #Raichu - Lt.Surge
+       ('Venonat', 5), #Venonat - Koga
+       ('Onix', 9), #Onix - Giovanni
+       ('Kadabra', 7), #Kadabra - Sabrina
+       ('Squirtle', 0), #Squirtle - Ash
+       ('Charmander', 0), #Charmander - Ash
+       ('Deoxys', 0); #Deoxys - Ash
 
 INSERT INTO PokemonLearnsMoveB(moveName, powerPoint)
 VALUES
