@@ -302,4 +302,5 @@ VALUES
 INSERT INTO Login_Information(id, username, password)
 VALUES
        (0, 'ash', 'ketchum'),
-       (10, 'gary', 'oak');
+       (10, 'gary', 'oak'),
+       (11, 'admin', '1234');
