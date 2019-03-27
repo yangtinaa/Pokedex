@@ -10,12 +10,13 @@ class About extends Component {
           edit: null,
           editing: false,
           towns: [],
+          // temp hardcoded
+          userId: 0,
         }
     }
 
     componentDidMount() {
-      // Temporarily hardcoded until we can pass ID from login page
-      const infoReq = fetch('/user/0').then(res => res.json());
+      const infoReq = fetch('/user/' + this.state.userId).then(res => res.json());
       const townsReq = fetch('/towns').then(res => res.json());
 
       Promise.all([infoReq, townsReq]).then(values =>
@@ -47,7 +48,7 @@ class About extends Component {
 
     _submitChanges() {
       if (this.state.edit.name !== '') {
-        fetch('/user/0', {
+        fetch('/user/' + this.state.userId, {
           method: 'post',
           body: JSON.stringify(this.state.edit),
           headers: new Headers({

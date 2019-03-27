@@ -4,12 +4,14 @@ import './css/pokemon.css'
 class Pokemon extends Component {
     constructor(props) {
         super(props);
-        this.state = null;
+        this.state = {
+          // Temp hardcoded
+          userId: 0
+        };
     }
 
     componentDidMount() {
-      // Temporarily hardcoded until we can pass ID from login page
-      fetch('/pokemon/0')
+      fetch('/pokemon/' + this.state.userId)
         .then(res => res.json())
         .then(data => this._processData(data));
     }
@@ -37,7 +39,7 @@ class Pokemon extends Component {
     }
 
     render() {
-      if (!this.state) {return null;}
+      if (!this.state.pokemon) {return null;}
       return (
         <div>
           {Object.values(this.state.pokemon).map(p => (
