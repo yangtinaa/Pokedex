@@ -11,16 +11,39 @@ class Gyms extends Component {
   componentDidMount() {
     fetch('/gyms')
       .then(res => res.json())
-      .then(gyms => this.setState({gyms: gyms}));
+      .then(data => this._processData(data));
+  }
+
+  _processData(data) {
+    const gyms = {};
+
+    let i;
+    for (i = 0; i < data.length; i++) {
+      const {gymName, badgeName, townName, badgeImage, name} = data[i];
+      if (gyms[gymName]) {
+        gyms[gymName].gymLeaders.push(name);
+      } else {
+        gyms[gymName] = {
+          gymName,
+          badgeName,
+          townName,
+          badgeImage,
+          gymLeaders: [name],
+        }
+      }
+    }
+
+    this.setState({gyms: gyms});
   }
 
   render() {
     return (
       <div>
-        {this.state.gyms.map(g => {
-          const {gymName, badgeName, townName, badgeImage, name} = g;
+        {Object.values(this.state.gyms).map(g => {
+          const {gymName, badgeName, townName, badgeImage, gymLeaders} = g;
+          const gymLeadersString = gymLeaders.join(', ');
           return (
-            <div key={gymName + name} className="about" style={{border: "1px solid grey", marginBottom: "10px", padding: "10px"}}>
+            <div key={gymName + gymLeadersString} className="about" style={{border: "1px solid grey", marginBottom: "10px", padding: "10px"}}>
               {
                 badgeImage ?
                   <img
@@ -32,7 +55,7 @@ class Gyms extends Component {
                 <div>Gym Name: {gymName}</div>
                 <div>Location: {townName || "Unknown"}</div>
                 <div>Badge Name: {badgeName || "Unknown"}</div>
-                <div>Gym Leader: {name || "Unknown"}</div>
+                <div>Gym Leader(s): {gymLeadersString || "Unknown"}</div>
               </div>
             </div>
           );
