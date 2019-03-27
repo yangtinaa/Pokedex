@@ -79,6 +79,14 @@ CREATE TABLE PokemonLearnsMoveA(
   FOREIGN KEY (moveName) REFERENCES PokemonLearnsMoveB(moveName)
 );
 
+CREATE TABLE Login_Information(
+	id INT,
+    username CHAR(20),
+    password CHAR(20),
+    PRIMARY KEY(id, username),
+    FOREIGN KEY (id) REFERENCES Trainer(id)
+);
+
 /* INSERTION STATEMENTS FOR DATABASE POPULATION*/
 
 INSERT INTO Town (name)
@@ -104,7 +112,8 @@ VALUES
        (6, 'Janine', 21, 'Female', 'Fuchsia City', 'https://cdn.bulbagarden.net/upload/archive/2/21/20120731091150%21Spr_HGSS_Janine.png'),
        (7, 'Sabrina', 25, 'Female', 'Saffron City', 'https://cdn.bulbagarden.net/upload/2/20/VSSabrina_PE.png'),
        (8, 'Blaine', 60, 'Male', 'Cinnabar Island', 'https://cdn.bulbagarden.net/upload/1/11/VSBlaine_PE.png'),
-       (9, 'Giovanni', 40, 'Male', 'Viridian City', 'https://cdn.bulbagarden.net/upload/4/4a/VSGiovanni_PE.png');
+       (9, 'Giovanni', 40, 'Male', 'Viridian City', 'https://cdn.bulbagarden.net/upload/4/4a/VSGiovanni_PE.png'),
+       (10, 'Gary Oak', 10, 'Male', 'Pallet Town', 'https://cdn.bulbagarden.net/upload/a/ad/Gary_Oak_BW.png');
 
 INSERT INTO  Gym_LocatedIn_Town(gymName, badgeName, townName, badgeImage)
 VALUES
@@ -274,3 +283,8 @@ VALUES
         ('Sand Attack', 4),
         ('Rock Throw', 4),
         ('Self-Destruct', 4);
+        
+INSERT INTO Login_Information(id, username, password)
+VALUES
+       (0, 'ash', 'ketchum'),
+       (10, 'gary', 'oak');
