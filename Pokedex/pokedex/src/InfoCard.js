@@ -3,7 +3,7 @@ import './css/about.css'
 
 class InfoCard extends Component {
   render() {
-    const {image, name, age, gender, hometown, style, gymName} = this.props;
+    const {image, name, age, gender, hometown, style, gymName, pokemonCount} = this.props;
 
     return (
       <div className="about" style={style}>
@@ -19,7 +19,8 @@ class InfoCard extends Component {
           <div>Age: {age || "Unknown"}</div>
           <div>Gender: {gender || "Unknown"}</div>
           <div>Hometown: {hometown || "Unknown"}</div>
-          {this.props.gymName ? <div>Leader Of: {gymName}</div> : null}
+          {gymName ? <div>Leader Of: {gymName}</div> : null}
+          {pokemonCount ? <div>Number of Captured Pokemon: {pokemonCount}</div> : null}
         </div>
       </div>
     );

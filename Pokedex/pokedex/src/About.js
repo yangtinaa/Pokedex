@@ -9,6 +9,7 @@ class About extends Component {
           info: null,
           edit: null,
           editing: false,
+          pokemonCount: null,
           towns: [],
           userId: this.props.id,
         }
@@ -17,17 +18,19 @@ class About extends Component {
     componentDidMount() {
       const infoReq = fetch('/user/' + this.state.userId).then(res => res.json());
       const townsReq = fetch('/towns').then(res => res.json());
+      const countReq = fetch('/pokemonCount/' + this.state.userId).then(res => res.json());
 
-      Promise.all([infoReq, townsReq]).then(values =>
-        this._processData(values[0], values[1])
+      Promise.all([infoReq, townsReq, countReq]).then(values =>
+        this._processData(values[0], values[1], values[2])
       )
     }
 
-    _processData(infoRes, townsRes) {
+    _processData(infoRes, townsRes, countRes) {
       const towns = townsRes.map(t => t.name);
       const info = infoRes[0];
+      const pokemonCount = countRes[0]['COUNT(*)'];
 
-      this.setState({info, edit: info, towns: towns});
+      this.setState({info, edit: info, towns, pokemonCount});
     }
 
     _handleFormChange(newEditState) {
@@ -62,7 +65,7 @@ class About extends Component {
     _renderInfoCard() {
       return (
         <div className="about-container">
-          <InfoCard {...this.state.info} />
+          <InfoCard {...this.state.info} pokemonCount={this.state.pokemonCount} />
           <button onClick={() => this.setState({editing: true})}>Edit</button>
         </div>
       );
