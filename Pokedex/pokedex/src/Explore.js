@@ -171,7 +171,7 @@ class Explore extends Component {
               {this.state.allPokemon.map(p => (
                 <div key={p.name} style={{position: "relative"}}>
                   <div className="pokemon-container pokemon-explore">
-                    <PokemonCard p={{...p, image: NEW_POKEMON_IMAGE}} />
+                    <PokemonCard p={{...p, image: p.image ? NEW_POKEMON_IMAGE : null}} />
                     <button className="pokemon-card-button"
                             onClick={() => this._handleEncounter(p)}>
                       Encounter
