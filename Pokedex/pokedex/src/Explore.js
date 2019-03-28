@@ -3,6 +3,8 @@ import './css/pokemon.css'
 
 import PokemonCard from './PokemonCard';
 
+const NEW_POKEMON_IMAGE = "https://www.publicdomainpictures.net/pictures/40000/nahled/question-mark.jpg";
+
 class Explore extends Component {
     constructor(props) {
         super(props);
@@ -169,7 +171,7 @@ class Explore extends Component {
               {this.state.allPokemon.map(p => (
                 <div key={p.name} style={{position: "relative"}}>
                   <div className="pokemon-container pokemon-explore">
-                    <PokemonCard p={p} />
+                    <PokemonCard p={{...p, image: NEW_POKEMON_IMAGE}} />
                     <button className="pokemon-card-button"
                             onClick={() => this._handleEncounter(p)}>
                       Encounter
